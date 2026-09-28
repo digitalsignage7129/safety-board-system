@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>安全掲示板</title>
+<link rel="stylesheet" href="board.css">
+<style>
+  /* 編集ページの外側レイアウト(表示モードでは使わない) */
+  body.edit-page { height: auto; overflow: auto; background: var(--bg); }
+  .edit-wrap { max-width: 1500px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+  .edit-header { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .edit-header h1 { font-size: 20px; margin: 0; }
+  .edit-header p { margin: 4px 0 0; color: var(--ink-soft); font-size: 13px; }
+  .preview-box { max-width: 900px; margin: 0 auto; }
+  .form-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 900px) { .form-grid { grid-template-columns: 1fr 1fr; } }
+  .field-row { display: flex; gap: 10px; }
+  .field-row > div { flex: 1; }
+  .rope-slot { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .rope-slot span { width: 3.4em; font-size: 12px; font-weight: 700; color: var(--ink-soft); }
+  .swatch-dot { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--line); flex-shrink: 0; }
+  .free-block { border: 1px solid var(--line); border-radius: 8px; padding: 10px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 6px; }
+  .free-block-head { display: flex; justify-content: space-between; align-items: center; }
+  .img-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .img-preview { width: 140px; height: 90px; object-fit: contain; background: var(--bg-alt); border-radius: 8px; border: 1px solid var(--line); }
+  .save-bar { position: sticky; bottom: 0; display: flex; justify-content: flex-end; gap: 10px; padding: 12px 0; background: linear-gradient(to top, var(--bg) 60%, transparent); }
+  .hint { font-size: 12px; color: var(--ink-soft); margin: 2px 0 0; }
+  .msg-center { text-align: center; padding: 80px 20px; color: var(--ink-soft); }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="toast" id="toast"></div>
+<script src="board.js"></script>
+</body>
+</html>

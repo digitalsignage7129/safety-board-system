@@ -1,0 +1,18 @@
+name = "safety-board-system"
+pages_build_output_dir = "public"
+compatibility_date = "2024-09-23"
+
+# ローカル動作確認(wrangler pages dev)用の設定。
+# 実際にCloudflareへデプロイする場合、GitHub連携でPagesプロジェクトを作成した後、
+# Cloudflareダッシュボードの「設定 > 関数(Functions)」からD1・R2のバインディングを
+# 同じ名前(DB / BOARD_BUCKET)で追加してください(このファイルの値は本番デプロイには
+# 反映されないため、ダッシュボード側の設定が必要です)。
+
+[[d1_databases]]
+binding = "DB"
+database_name = "safety-board-db"
+database_id = "00000000-0000-0000-0000-000000000000" # wrangler d1 create 実行後に表示されるIDに置き換えてください
+
+[[r2_buckets]]
+binding = "BOARD_BUCKET"
+bucket_name = "safety-board-assets"

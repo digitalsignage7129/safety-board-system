@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>安全掲示板 管理画面</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  .wrap { max-width: 980px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+  header.top { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  header.top h1 { font-size: 20px; margin: 0; }
+  header.top p { margin: 4px 0 0; font-size: 13px; color: var(--ink-soft); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--ink-soft); font-weight: 700; font-size: 12px; }
+  .url-cell { display: flex; flex-direction: column; gap: 4px; max-width: 340px; }
+  .url-row { display: flex; gap: 6px; align-items: center; }
+  .url-row code { flex: 1; background: var(--bg-alt); padding: 4px 6px; border-radius: 6px; font-size: 11px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .url-row button { padding: 4px 8px; font-size: 11px; }
+  .new-form { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
+  .new-form > div { flex: 1; min-width: 200px; }
+  .shared-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+  .shared-item { border: 1px solid var(--line); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .shared-item img, .shared-item .ph { width: 100%; height: 110px; object-fit: contain; background: var(--bg-alt); border-radius: 6px; }
+  .shared-item .ph { display: flex; align-items: center; justify-content: center; color: var(--ink-soft); font-size: 12px; }
+  .shared-item h3 { margin: 0; font-size: 13px; }
+  .row-actions { display: flex; gap: 6px; }
+  #login-screen { max-width: 360px; margin: 80px auto; display: flex; flex-direction: column; gap: 10px; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="toast" id="toast"></div>
+<script src="admin.js"></script>
+</body>
+</html>

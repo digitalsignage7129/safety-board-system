@@ -1,0 +1,9 @@
+node_modules/
+data/boards/*.json
+data/uploads/*
+data/shared/*
+!data/boards/.gitkeep
+!data/uploads/.gitkeep
+!data/shared/.gitkeep
+.env
+.wrangler/
