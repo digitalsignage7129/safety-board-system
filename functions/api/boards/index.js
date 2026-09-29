@@ -43,6 +43,7 @@ export async function onRequestPost({ request, env }) {
     ropeCycleStartMonth: today.ym,
     safetyGoals: ['', ''],
     noticeText: '',
+    noticeFontSize: 'm',
     freeBlocks: [],
     hasCustomSignalImage: false,
     displayInfo: '',
