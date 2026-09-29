@@ -16,3 +16,6 @@ database_id = "129c16ff-6589-4550-bcdb-b1b655e59798" # wrangler d1 create 実行
 [[r2_buckets]]
 binding = "BOARD_BUCKET"
 bucket_name = "safety-board-assets"
+
+[vars]
+ADMIN_PASSWORD = "test1234"
