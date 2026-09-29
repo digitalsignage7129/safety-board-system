@@ -126,7 +126,7 @@
         return {
           title: '玉掛けワイヤーロープの点検色',
           body: `<div class="b-rope-current">
-                   <div class="b-rope-current-text">今月の点検色は<span class="b-rope-current-badge">${esc(c.currentRopeColor)}</span>です<small>4ヶ月周期で自動切替</small></div>
+                   <div class="b-rope-current-text">今月の点検色は<span class="b-rope-current-badge" style="background:${hexFor(c.currentRopeColor)}">${esc(c.currentRopeColor)}</span>です<small>4ヶ月周期で自動切替</small></div>
                  </div>`,
         };
       }
@@ -151,11 +151,13 @@
           : sharedImageOrPlaceholder('signal', '当作業所のクレーン等の合図法', sharedStatus, cacheBust);
         return { title: '当作業所のクレーン等の合図法', body: `<div class="b-signal-img-wrap">${signalBody}</div>` };
       }
-      case 'notice':
+      case 'notice': {
+        const sizeCls = ['s', 'm', 'l', 'xl'].includes(board.noticeFontSize) ? board.noticeFontSize : 'm';
         return {
           title: 'お知らせ',
-          body: `<div class="b-notice-text">${esc(board.noticeText || '')}</div>`,
+          body: `<div class="b-notice-text b-notice-size-${sizeCls}">${esc(board.noticeText || '')}</div>`,
         };
+      }
       case 'free': {
         const items = (board.freeBlocks || []).filter((b) => b.label || b.content);
         const body = items.length
@@ -420,6 +422,13 @@
           <div class="card">
             <label>お知らせ</label>
             <textarea id="f-notice" rows="5" maxlength="600"></textarea>
+            <label style="margin-top:8px">文字サイズ</label>
+            <select id="f-notice-size">
+              <option value="s">小さめ</option>
+              <option value="m">標準</option>
+              <option value="l">大きめ</option>
+              <option value="xl">特大</option>
+            </select>
           </div>
 
           <div class="card">
@@ -545,6 +554,7 @@
     const fPeriodStart = document.getElementById('f-periodStart');
     const fPeriodEnd = document.getElementById('f-periodEnd');
     const fNotice = document.getElementById('f-notice');
+    const fNoticeSize = document.getElementById('f-notice-size');
 
     function fillForm() {
       fCustomerName.value = board.customerName || '';
@@ -557,6 +567,7 @@
       fPeriodStart.value = board.constructionPeriodStart || '';
       fPeriodEnd.value = board.constructionPeriodEnd || '';
       fNotice.value = board.noticeText || '';
+      fNoticeSize.value = board.noticeFontSize || 'm';
       renderRopeSlots();
       renderFreeBlocks();
       renderEmergencyList();
@@ -564,7 +575,7 @@
     }
 
     [fCustomerName, fGoal0, fGoal1, fRopeStart,
-     fTargetHours, fCurrentHours, fHoursDate, fPeriodStart, fPeriodEnd, fNotice].forEach((el) => {
+     fTargetHours, fCurrentHours, fHoursDate, fPeriodStart, fPeriodEnd, fNotice, fNoticeSize].forEach((el) => {
       el.addEventListener('input', () => {
         board.customerName = fCustomerName.value;
         board.safetyGoals = [fGoal0.value, fGoal1.value];
@@ -575,6 +586,7 @@
         board.constructionPeriodStart = fPeriodStart.value;
         board.constructionPeriodEnd = fPeriodEnd.value;
         board.noticeText = fNotice.value;
+        board.noticeFontSize = fNoticeSize.value;
         updatePreview();
       });
     });
@@ -653,6 +665,7 @@
         constructionPeriodEnd: board.constructionPeriodEnd,
         safetyGoals: board.safetyGoals,
         noticeText: board.noticeText,
+        noticeFontSize: board.noticeFontSize,
         freeBlocks: board.freeBlocks,
         emergencyContacts: board.emergencyContacts,
       };
