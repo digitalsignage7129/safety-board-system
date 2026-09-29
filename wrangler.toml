@@ -11,7 +11,7 @@ compatibility_date = "2024-09-23"
 [[d1_databases]]
 binding = "DB"
 database_name = "safety-board-db"
-database_id = "00000000-0000-0000-0000-000000000000" # wrangler d1 create 実行後に表示されるIDに置き換えてください
+database_id = "129c16ff-6589-4550-bcdb-b1b655e59798" # wrangler d1 create 実行後に表示されるIDに置き換えてください
 
 [[r2_buckets]]
 binding = "BOARD_BUCKET"
