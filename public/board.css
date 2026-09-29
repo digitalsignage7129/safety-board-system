@@ -22,6 +22,24 @@ body.board-page.preview-mode {
   padding: 0;
   display: block;
 }
+/* 編集画面のプレビュー用の箱(id="preview"のdiv)。
+   本来はbody自体にこのクラスが付く想定で上のルールが書かれていたが、実際には
+   編集画面のbodyはclass="edit-page"のままで、このプレビュー用divにだけ
+   "board-page preview-mode"というクラスが付いている(bodyには付かない)ため、
+   上のbody.board-page.preview-modeは一度も適用されていなかった。
+   16:9の箱の形(aspect-ratio)は、ここ(.preview-mode)側で決める。
+   container-type:size(cqw/cqh を有効にする指定)は内側の.stageに付けたままに
+   しておく必要がある。同じ要素にaspect-ratioとcontainer-type:sizeを両方
+   指定すると、ブラウザによって高さの計算がうまくいかず、極端に小さく
+   潰れて表示されることがあるため、箱の形を決める役目(この.preview-mode)と、
+   中の文字サイズの基準になる役目(.stage)を別々の要素に分けている。 */
+.preview-mode {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+}
 
 .stage {
   --blue-light: #dde4f1;  /* バナー上下端のハイライト色 */
@@ -60,9 +78,8 @@ body.board-page.preview-mode {
 .preview-mode .stage {
   position: static;
   width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  max-width: 100%;
+  height: 100%;
+  max-width: none;
   max-height: none;
   border-radius: 10px;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
