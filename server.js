@@ -101,6 +101,7 @@ function loadBoard(id) {
     if (typeof board.constructionPeriodStart !== 'string') board.constructionPeriodStart = '';
     if (typeof board.constructionPeriodEnd !== 'string') board.constructionPeriodEnd = '';
     if (!Array.isArray(board.emergencyContacts)) board.emergencyContacts = DEFAULT_EMERGENCY_CONTACTS.map((c) => ({ ...c }));
+    if (!['s', 'm', 'l', 'xl'].includes(board.noticeFontSize)) board.noticeFontSize = 'm';
     return board;
   } catch (e) {
     return null;
@@ -222,6 +223,7 @@ app.post('/api/boards', requireAdmin, (req, res) => {
     ropeCycleStartMonth: today.ym,
     safetyGoals: ['', ''],
     noticeText: '',
+    noticeFontSize: 'm',
     freeBlocks: [],
     hasCustomSignalImage: false,
     displayInfo: '',
@@ -284,6 +286,7 @@ const EDITABLE_FIELDS = [
   'ropeCycleStartMonth',
   'safetyGoals',
   'noticeText',
+  'noticeFontSize',
   'freeBlocks',
   'targetHours',
   'currentHours',
